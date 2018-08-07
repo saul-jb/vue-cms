@@ -10,7 +10,12 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.5.11"
+    "@feathersjs/authentication-client": "^1.0.2",
+    "@feathersjs/feathers": "^3.1.7",
+    "@feathersjs/rest-client": "^1.4.1",
+    "vue": "^2.5.11",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
