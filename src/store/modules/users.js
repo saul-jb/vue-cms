@@ -1,6 +1,6 @@
 import client from "@/libs/client";
 
-const userService = client.service("users");
+const userService = client.service("services/users");
 
 export default {
 	namespaced: true,
@@ -16,7 +16,7 @@ export default {
 	},
 
 	actions: {
-		createAccount ({commit, dispatch}, {username, password, email}) {
+		createAccount ({dispatch}, {username, password, email}) {
 			return new Promise((resolve, reject) => {
 				userService.create({
 					email,
@@ -54,7 +54,7 @@ export default {
 			client.logout();
 		},
 
-		getAccounts ({commit}, criteria) {
+		findAccounts ({commit}, criteria = {}) {
 			return userService.find({query: criteria});
 		}
 	},

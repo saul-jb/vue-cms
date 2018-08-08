@@ -1,6 +1,14 @@
 import client from "@/libs/client";
 
-const pageService = client.service("pages");
+const pageService = client.service("services/pages");
+
+/*
+type: { type: String },
+title: { type: String, required: true },
+content: { type: String },
+author: { type: Schema.Types.ObjectId, ref: "users", required: true },
+editors: [{ type: Schema.Types.ObjectId, ref: "users" }]
+*/
 
 export default {
 	namespaced: true,
@@ -14,7 +22,18 @@ export default {
 	},
 
 	actions: {
+		findPages (context, criteria = {}) {
+			return pageService.find({query: criteria});
+		},
 
+		createPage (context) {
+			return pageService.create({
+				type: "page",
+				title: "test page 1",
+				content: "<h1>some</h1><b>formatted</b><br />content!",
+				author: "5b6a27be36196f473b226814"
+			});
+		}
 	},
 
 	mutations: {
