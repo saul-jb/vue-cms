@@ -16,7 +16,7 @@ export default {
 	},
 
 	actions: {
-		createAccount ({dispatch}, {username, password, email}) {
+		createUser ({dispatch}, {username, password, email}) {
 			return new Promise((resolve, reject) => {
 				userService.create({
 					email,
@@ -54,8 +54,12 @@ export default {
 			client.logout();
 		},
 
-		findAccounts ({commit}, criteria = {}) {
+		findUsers (context, criteria = {}) {
 			return userService.find({query: criteria});
+		},
+
+		getUser (context, id) {
+			return userService.get(id);
 		}
 	},
 

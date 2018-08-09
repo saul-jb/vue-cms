@@ -12,7 +12,7 @@
 
 				<div class="page-content" v-html="page.content">{{ page.content }}</div>
 
-				<span class="page-author">{{ page.author }}</span>
+				<span class="page-author">{{ page.author }}</span> on <span class="page-timestamp">{{ page.createdAt | formatPageDate }}</span>
 			</template>
 
 			<template v-else>
@@ -53,6 +53,12 @@
 			}).then(pages => {
 				this.loading = false;
 				this.page = pages.data[0];
+
+				this.getUser(this.page.author).then(user => {
+					console.log(user);
+				}).catch(() => {
+					this.page.author = "(Deleted Account)";
+				});
 			}).catch(err => {
 				console.log(err.message);
 
@@ -64,7 +70,10 @@
 		},
 
 		methods: {
-			...mapActions("pages", ["findPages"])
+			...mapActions({
+				findPages: "pages/findPages",
+				getUser: "users/getUser"
+			})
 		},
 
 		components: {
