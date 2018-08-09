@@ -7,6 +7,12 @@ import Search from "@/pages/page-search";
 
 Vue.use(Router);
 
+/*
+	Restricted Routes:
+		/authentication
+		/services/*
+*/
+
 const router = new Router({
 	mode: "history",
 	routes: [
@@ -16,7 +22,7 @@ const router = new Router({
 			component: Main
 		},
 		{
-			path: "/:page",
+			path: "/:pageQuery",
 			name: "Page",
 			component: Main,
 			props: true

@@ -1,71 +1,76 @@
 <template>
-	<div>
-		<div v-if="hasPages">
-			Insert content here.
-			<div v-for="page in pages">
-				<span v-html="page.content">{{ page.content }}</span>
-			</div>
-		</div>
+	<div class="page-container">
+		<template v-if="error">
+			<Error :error="error" />
+		</template>
+		<template v-else-if="loading">
+			<Loading />
+		</template>
+		<template v-else>
+			<template v-if="page">
+				<h1 class="page-title">{{ page.title }}</h1>
 
-		<div v-else>
-			<NotFound />
-		</div>
+				<div class="page-content" v-html="page.content">{{ page.content }}</div>
+
+				<span class="page-author">{{ page.author }}</span>
+			</template>
+
+			<template v-else>
+				<NotFound />
+			</template>
+		</template>
 	</div>
 </template>
 
 <script>
 	import {mapActions} from "vuex";
 	import NotFound from "@/components/not-found";
+	import Error from "@/components/error";
+	import Loading from "@/components/loading";
 
 	export default {
 		data () {
 			return {
-				pages: []
+				page: {},
+				loading: true,
+				error: false
 			};
 		},
 
 		props: {
-			page: {
-				required: true,
+			pageQuery: {
 				type: String
 			}
 		},
 
 		computed: {
-			hasPages () {
-				return this.pages && this.pages.length !== 0;
-			}
 		},
 
 		created () {
-			this.findPages({title: this.page}).then(pages => {
-				this.pages = pages.data;
+			this.findPages({
+				title: this.pageQuery,
+				$limit: 1
+			}).then(pages => {
+				this.loading = false;
+				this.page = pages.data[0];
 			}).catch(err => {
-				console.error(err);
-			});
+				console.log(err.message);
 
-			this.signIn({email: "admin", password: "admin"}).then(res => {
-				/* this.createPage().then(page => {
-					console.log(page);
-				}).catch(err => {
-					console.error(err);
-				}); */
-			}).catch(err => {
-				console.log(err);
+				this.error = {
+					name: err.name,
+					message: err.message
+				};
 			});
 		},
 
 		methods: {
-			...mapActions("pages", ["findPages", "createPage"]),
-			...mapActions("users", ["signIn"])
-			/* ...mapMutations({
-				addUnreadMessage: "channels/addUnreadMessage",
-				setMessages: "messages/setMessages"
-			}) */
+			...mapActions("pages", ["findPages"])
 		},
 
 		components: {
-			NotFound
+			NotFound,
+			Loading,
+			Error
 		}
 	};
 </script>
