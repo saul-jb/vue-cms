@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Main from "@/pages/page-main";
+import Template from "@/pages/page-template/index";
 import Admin from "@/pages/page-admin";
-import Search from "@/pages/page-search";
+import Search from "@/pages/page-template/page-search";
+import Query from "@/pages/page-template/page-query";
 
 Vue.use(Router);
 
@@ -17,26 +18,29 @@ const router = new Router({
 	mode: "history",
 	routes: [
 		{
-			path: "/",
-			name: "Home",
-			component: Main
-		},
-		{
-			path: "/:pageQuery",
-			name: "Page",
-			component: Main,
-			props: true
-		},
-		{
-			path: "/search/:query",
-			name: "Search",
-			component: Search,
-			props: true
-		},
-		{
 			path: "/admin",
 			name: "Admin",
 			component: Admin
+		},
+		{
+			path: "/",
+			name: "Home",
+			component: Template,
+			children: [
+				{
+					path: "search/:query",
+					name: "Search",
+					component: Search,
+					props: true
+				},
+
+				{
+					path: ":pageQuery",
+					name: "Page",
+					component: Query,
+					props: true
+				}
+			]
 		},
 		{
 			path: "*",

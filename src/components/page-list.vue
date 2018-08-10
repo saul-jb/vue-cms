@@ -1,6 +1,6 @@
 <template>
-	<div class="main-container">
-		admin
+	<div>
+		page list
 	</div>
 </template>
 

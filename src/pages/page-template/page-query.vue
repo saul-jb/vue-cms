@@ -1,5 +1,5 @@
 <template>
-	<div class="main-container">
+	<div class="page-query">
 		<Error v-if="error" :error="error" />
 
 		<Loading v-else-if="loading" />
@@ -20,6 +20,7 @@
 
 <script>
 	import {mapActions} from "vuex";
+
 	import PageContent from "@/components/page-content";
 	import CommentsList from "@/components/comments-list";
 	import NotFound from "@/components/not-found";
@@ -39,9 +40,6 @@
 			pageQuery: {
 				type: String
 			}
-		},
-
-		computed: {
 		},
 
 		created () {
@@ -77,23 +75,6 @@
 </script>
 
 <style scoped>
-	.main-container {
-		display: grid;
-
-		grid-template-columns: 20% 60% 20%;
-		grid-template-rows: auto;
-
-		/* The "."s can be replaced with widgets */
-		grid-template-areas:
-			".	content		."
-			".	comments	."
-			".	.			.";
-	}
-
-	.main, .loading-container, .error-container, .not-found-container {
-		grid-area: content;
-	}
-
 	.comments-list {
 		grid-area: comments;
 	}
