@@ -1,23 +1,29 @@
 <template>
 	<div id="app">
+		<TheHeader />
 		<TheNavBar />
-		<main class="main">
-			<router-view></router-view>
-		</main>
+		<router-view></router-view>
+		<TheFooter />
 	</div>
 </template>
 
 <script>
+	import TheHeader from "@/components/the-header";
 	import TheNavBar from "@/components/the-nav-bar";
+	import TheFooter from "@/components/the-footer";
 
 	export default {
 		components: {
-			TheNavBar
+			TheHeader,
+			TheNavBar,
+			TheFooter
 		}
 	};
 </script>
 
 <style>
+	/* Colors */
+
 	/* General */
 	* {
 		box-sizing: border-box;
@@ -29,7 +35,7 @@
 		margin: 0;
 
 		width:100%;
-		height: 100%;
+		min-height: 100vh
 	}
 
 	a {
@@ -38,7 +44,25 @@
 </style>
 
 <style scoped>
-	.main {
-		height: calc(100% - 30px);
+	#app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	.header {
+		height: 150px;
+	}
+
+	.nav-bar {
+		height: 30px;
+	}
+
+	.main-container {
+		flex: 1;
+	}
+
+	.footer {
+		height: 30px;
 	}
 </style>

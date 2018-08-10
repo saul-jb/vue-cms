@@ -1,7 +1,7 @@
 <template>
-	<nav class="nav-bar">
-		Nav bar
-	</nav>
+	<footer class="footer">
+		footer
+	</footer>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-	.nav-bar {
+	.footer {
 		background-color: grey;
 	}
 </style>
