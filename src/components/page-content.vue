@@ -17,7 +17,7 @@
 				type: Object,
 				required: true,
 				validator: page => {
-					return page;
+					return !!page && page._id && page.title && page.content;
 				}
 			}
 		},

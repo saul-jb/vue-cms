@@ -7,10 +7,7 @@
 		<template v-else>
 			<template v-if="hasPages">
 				<main class="main">
-					<!-- <PageContent :page="page" /> -->
-					<section v-for="page in pages">
-						{{ page.title }}
-					</section>
+					<PageList :pages="pages" />
 				</main>
 			</template>
 
@@ -25,12 +22,14 @@
 	import NotFound from "@/components/not-found";
 	import Error from "@/components/error";
 	import Loading from "@/components/loading";
+	import PageList from "@/components/page-list";
 
 	export default {
 		data () {
 			return {
 				pages: [],
-				loading: true
+				loading: true,
+				error: false
 			};
 		},
 
@@ -53,6 +52,11 @@
 				this.pages = pages.data;
 			}).catch(err => {
 				console.error(err);
+
+				this.error = {
+					name: err.name,
+					message: err.message
+				};
 			});
 		},
 
@@ -63,7 +67,8 @@
 		components: {
 			NotFound,
 			Loading,
-			Error
+			Error,
+			PageList
 		}
 	};
 </script>

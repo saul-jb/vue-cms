@@ -21,17 +21,14 @@
 	};
 </script>
 
-<style>
-	/* Global style - really specific to not overlap something else */
-	.page-template > .content > .main,
-	.page-template > .content > .loading-container,
-	.page-template > .content > .error-container,
-	.page-template > .content > .not-found-container {
+<style scoped>
+	>>> .main,
+	>>> .loading-container,
+	>>> .error-container,
+	>>> .not-found-container {
 		grid-area: content;
 	}
-</style>
 
-<style scoped>
 	.page-template {
 		display: flex;
 		flex-direction: column;
