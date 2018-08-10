@@ -1,17 +1,20 @@
 <template>
 	<div class="main-container">
-		<main class="main">
-			<Error v-if="error" :error="error" />
-			<Loading v-else-if="loading" />
-			<template v-else>
-				<template v-if="page">
-					<PageContent :page="page" />
-					<CommentsList :entityId="page._id" />
-				</template>
+		<Error v-if="error" :error="error" />
 
-				<NotFound v-else />
+		<Loading v-else-if="loading" />
+
+		<template v-else>
+			<template v-if="page">
+				<main class="main">
+					<PageContent :page="page" />
+				</main>
+
+				<CommentsList :entityId="page._id" />
 			</template>
-		</main>
+
+			<NotFound v-else />
+		</template>
 	</div>
 </template>
 
@@ -74,7 +77,7 @@
 </script>
 
 <style scoped>
-	.main {
+	.main-container {
 		display: grid;
 
 		grid-template-columns: 20% 60% 20%;
@@ -87,7 +90,7 @@
 			".	.			.";
 	}
 
-	.page-container {
+	.main, .loading-container, .error-container, .not-found-container {
 		grid-area: content;
 	}
 
