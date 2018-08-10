@@ -1,6 +1,6 @@
 <template>
 	<article class="page-summary">
-		<h2 class="page-summary-title">{{ page.title }}</h2>
+		<router-link :to="{ name: 'Page', params: {pageQuery: page.title} }"><h2 class="page-summary-title">{{ page.title }}</h2></router-link>
 		<p class="page-summary-content">
 			{{ strippedContent }}
 		</p>

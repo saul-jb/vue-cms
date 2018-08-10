@@ -1,8 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import Login from "@/pages/page-login";
+
+import AdminTemplate from "@/pages/page-admin-template/index";
+import Overview from "@/pages/page-admin-template/page-overview";
+
 import Template from "@/pages/page-template/index";
-import Admin from "@/pages/page-admin";
 import Search from "@/pages/page-template/page-search";
 import Query from "@/pages/page-template/page-query";
 
@@ -20,7 +24,19 @@ const router = new Router({
 		{
 			path: "/admin",
 			name: "Admin",
-			component: Admin
+			component: AdminTemplate,
+			children: [
+				{
+					path: "/",
+					name: "Overview",
+					component: Overview
+				}
+			]
+		},
+		{
+			path: "/login",
+			name: "Login",
+			component: Login
 		},
 		{
 			path: "/",
