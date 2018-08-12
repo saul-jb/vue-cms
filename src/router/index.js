@@ -23,7 +23,6 @@ const router = new Router({
 	routes: [
 		{
 			path: "/admin",
-			name: "Admin",
 			component: AdminTemplate,
 			children: [
 				{
