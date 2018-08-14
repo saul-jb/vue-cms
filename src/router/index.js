@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import store from "@/store";
+
 import Login from "@/pages/page-login";
 
 import AdminTemplate from "@/pages/page-admin-template/index";
@@ -24,6 +26,7 @@ const router = new Router({
 		{
 			path: "/admin",
 			component: AdminTemplate,
+			meta: { requiresAuth: true },
 			children: [
 				{
 					path: "/",
@@ -62,6 +65,15 @@ const router = new Router({
 			redirect: "/"
 		}
 	]
+});
+
+router.beforeEach((to, from, next) => {
+	if (to.meta.requiresAuth && !store.state.user.id) {
+		// Needs auth and not authenticated
+		next({ name: "Login" });
+	} else {
+		next();
+	}
 });
 
 export default router;

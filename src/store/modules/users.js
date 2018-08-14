@@ -32,7 +32,7 @@ export default {
 			});
 		},
 
-		signIn ({commit}, {email = null, password = null}) {
+		signIn ({commit}, {email = null, password = null} = {}) {
 			return new Promise((resolve, reject) => {
 				const payload = (email && password)
 					? {strategy: "local", email, password} : {};
