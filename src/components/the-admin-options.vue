@@ -1,6 +1,20 @@
 <template>
 	<div class="admin-options">
-		options
+		<nav>
+			<ul>
+				<li>
+					<router-link :to="{ name: 'AdminOverview', params: {} }">Overview</router-link>
+				</li>
+				<li>
+					<router-link :to="{ name: 'AdminPages', params: {} }">Pages</router-link>
+				</li>
+				<li>
+					<router-link :to="{ name: 'AdminUsers', params: {} }">Users</router-link>
+				</li>
+			</ul>
+		</nav>
+
+
 		<TheLogoutButton />
 	</div>
 </template>

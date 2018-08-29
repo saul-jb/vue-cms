@@ -34,7 +34,7 @@
 
 		created () {
 			this.signIn().then(() => {
-				this.$router.push({ name: "Overview" });
+				this.$router.push({ name: "AdminOverview" });
 			});
 		},
 
@@ -46,7 +46,7 @@
 					email: this.email,
 					password: this.password
 				}).then(() => {
-					this.$router.push({ name: "Overview" });
+					this.$router.push({ name: "AdminOverview" });
 				}).catch(err => {
 					this.error = err;
 				});

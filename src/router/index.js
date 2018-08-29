@@ -6,7 +6,9 @@ import store from "@/store";
 import Login from "@/pages/page-login";
 
 import AdminTemplate from "@/pages/page-admin-template/index";
-import Overview from "@/pages/page-admin-template/page-overview";
+import AdminOverview from "@/pages/page-admin-template/page-admin-overview";
+import AdminPages from "@/pages/page-admin-template/page-admin-pages";
+import AdminUsers from "@/pages/page-admin-template/page-admin-users";
 
 import Template from "@/pages/page-template/index";
 import Search from "@/pages/page-template/page-search";
@@ -30,8 +32,18 @@ const router = new Router({
 			children: [
 				{
 					path: "/",
-					name: "Overview",
-					component: Overview
+					name: "AdminOverview",
+					component: AdminOverview
+				},
+				{
+					path: "pages",
+					name: "AdminPages",
+					component: AdminPages
+				},
+				{
+					path: "users",
+					name: "AdminUsers",
+					component: AdminUsers
 				}
 			]
 		},
