@@ -32,6 +32,8 @@
 
 		height: 100vh;
 
+		padding: 50px;
+
 		background-color: grey;
 	}
 </style>

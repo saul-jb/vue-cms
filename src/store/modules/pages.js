@@ -26,7 +26,9 @@ export default {
 			return pageService.find({query: criteria});
 		},
 
-		// getPage (context, )
+		getPage (context, id) {
+			return pageService.get(id);
+		},
 
 		createPage (context) {
 			return pageService.create({

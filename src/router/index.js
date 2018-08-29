@@ -9,6 +9,7 @@ import AdminTemplate from "@/pages/page-admin-template/index";
 import AdminOverview from "@/pages/page-admin-template/page-admin-overview";
 import AdminPages from "@/pages/page-admin-template/page-admin-pages";
 import AdminUsers from "@/pages/page-admin-template/page-admin-users";
+import AdminPageEdit from "@/pages/page-admin-template/page-admin-page-edit";
 
 import Template from "@/pages/page-template/index";
 import Search from "@/pages/page-template/page-search";
@@ -39,6 +40,12 @@ const router = new Router({
 					path: "pages",
 					name: "AdminPages",
 					component: AdminPages
+				},
+				{
+					path: "page/edit/:pageId",
+					name: "AdminPageEdit",
+					component: AdminPageEdit,
+					props: true
 				},
 				{
 					path: "users",
