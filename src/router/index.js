@@ -34,22 +34,26 @@ const router = new Router({
 				{
 					path: "/",
 					name: "AdminOverview",
+					meta: { requiresAuth: true },
 					component: AdminOverview
 				},
 				{
 					path: "pages",
 					name: "AdminPages",
+					meta: { requiresAuth: true },
 					component: AdminPages
 				},
 				{
 					path: "page/edit/:pageId",
 					name: "AdminPageEdit",
+					meta: { requiresAuth: true },
 					component: AdminPageEdit,
 					props: true
 				},
 				{
 					path: "users",
 					name: "AdminUsers",
+					meta: { requiresAuth: true },
 					component: AdminUsers
 				}
 			]
@@ -87,7 +91,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.meta.requiresAuth && !store.state.user.id) {
+	if (to.meta.requiresAuth && !store.state.users.id) {
 		// Needs auth and not authenticated
 		next({ name: "Login" });
 	} else {

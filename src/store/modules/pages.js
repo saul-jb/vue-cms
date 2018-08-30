@@ -37,6 +37,10 @@ export default {
 				content: "<h1>some</h1><b>formatted</b><br />content!",
 				author: "5b6a27be36196f473b226814"
 			});
+		},
+
+		updatePage (context, {id, page}) {
+			return pageService.update(id, page);
 		}
 	},
 
